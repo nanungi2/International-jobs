@@ -7,7 +7,8 @@
 <title>GlobalWorkJobs - International Career Portal</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
-body{background:#f8fafc;color:#1e293b;line-height:1.6;scroll-behavior:smooth}
+html{scroll-behavior:smooth}
+body{background:#f8fafc;color:#1e293b;line-height:1.6}
 .container{max-width:1100px;margin:0 auto;padding:20px}
 header{background:linear-gradient(135deg,#2563eb 0%,#1e40af 100%);color:white;padding:80px 20px;text-align:center}
 header h1{font-size:48px;margin-bottom:10px}
@@ -43,9 +44,122 @@ footer{background:#1e293b;color:white;text-align:center;padding:40px 20px;margin
 <p>Trusted by 50,000+ Job Seekers Worldwide</p>
 <h2>Your International Career Starts Here</h2>
 <p>Connect with top employers in Canada, UAE, Saudi Arabia, China, and Qatar. Register today and unlock thousands of job opportunities abroad.</p>
-<button class="btn" onclick="document.getElementById('register').scrollIntoView()">Register Now — $1 Only</button>
-<button class="btn" style="background:transparent;border:2px solid white;color:white" onclick="document.getElementById('how').scrollIntoView()">Learn More</button>
+<a href="#register" class="btn">Register Now — $1 Only</a>
+<a href="#how" class="btn" style="background:transparent;border:2px solid white;color:white">Learn More</a>
 <div class="stats">
 <div class="stat"><h3>5+</h3><p>Countries</p></div>
 <div class="stat"><h3>10K+</h3><p>Jobs Available</p></div>
-<div class="stat"><h3>50K+</h3><p>
+<div class="stat"><h3>50K+</h3><p>Registered Seekers</p></div>
+<div class="stat"><h3>$1</h3><p>Processing Fee</p></div>
+</div>
+</div>
+</header>
+
+<section id="how">
+<div class="container">
+<h2>How It Works</h2>
+<p style="text-align:center">Three simple steps to start your international career journey</p>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><h3>Create Your Profile</h3><p>Fill in your name, education, and contact details to build your profile.</p></div>
+<div class="step"><div class="step-num">2</div><h3>Choose Your Preferences</h3><p>Select your preferred country and the job type that matches your skills.</p></div>
+<div class="step"><div class="step-num">3</div><h3>Pay $1 & Get Matched</h3><p>Pay a one-time $1 processing fee and receive your job match within 24–48 hrs.</p></div>
+</div>
+</div>
+</section>
+
+<section style="background:#f1f5f9">
+<div class="container">
+<h2>Available Job Categories</h2>
+<p style="text-align:center">Open positions across multiple industries and skill levels</p>
+<div class="categories">
+<div class="cat">Driver</div>
+<div class="cat">Security Guard</div>
+<div class="cat">Teacher</div>
+<div class="cat">House Helper</div>
+<div class="cat">Nurse</div>
+<div class="cat">Factory Worker</div>
+</div>
+</div>
+</section>
+
+<section id="register">
+<div class="container">
+<h2>Register as a Job Seeker</h2>
+<p style="text-align:center">Complete the form below to get matched with employers</p>
+<div class="form">
+<p style="margin-bottom:20px">Personal Information - Step 1 of 3</p>
+<label>Full Name *</label>
+<input type="text" placeholder="Enter your full name" id="name" required>
+<label>Email Address *</label>
+<input type="email" placeholder="your@email.com" id="email" required>
+<label>Education Level *</label>
+<select id="education" required>
+<option value="">Select your education level</option>
+<option>Not Educated - No formal education</option>
+<option>Primary / Secondary - Basic school education</option>
+<option>Diploma / Certificate - Vocational / Trade school</option>
+<option>University / Degree - Bachelor's or higher</option>
+</select>
+<button type="button" class="btn" style="width:100%;margin-top:20px" onclick="payNow()">Continue to Payment $1</button>
+</div>
+</div>
+</section>
+
+<section style="background:#f1f5f9">
+<div class="container">
+<h2>Success Stories</h2>
+<p style="text-align:center">Real people, real opportunities</p>
+<div class="testimonials">
+<div class="testi">
+<p>"I found a driver job in UAE within a week of registering. The process was so easy and the $1 fee was totally worth it!"</p>
+<div class="testi-header"><div class="avatar">AK</div><div><strong>Ahmed K.</strong><br>Driver — UAE</div></div>
+</div>
+<div class="testi">
+<p>"As a nurse, I got matched with a hospital in Saudi Arabia. GlobalWork Jobs made everything simple and transparent."</p>
+<div class="testi-header"><div class="avatar">RM</div><div><strong>Rose M.</strong><br>Nurse — Saudi Arabia</div></div>
+</div>
+<div class="testi">
+<p>"I applied as a factory worker for Canada and got my offer letter in 3 days. Highly recommended for anyone looking abroad."</p>
+<div class="testi-header"><div class="avatar">JL</div><div><strong>James L.</strong><br>Factory Worker — Canada</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<h3>GlobalWorkJobs</h3>
+<p>Privacy Policy | Terms | Contact</p>
+<p>© 2026 GlobalWork Jobs. All rights reserved. | Connecting job seekers with international employers.</p>
+<p>Payment processing secured by Stripe. Your personal information is protected and never shared without consent.</p>
+</div>
+</footer>
+
+<script>
+function payNow(){
+  let name = document.getElementById('name').value.trim();
+  let email = document.getElementById('email').value.trim();
+  let education = document.getElementById('education').value;
+  
+  if(name === '' || email === '' || education === ''){
+    alert('Please fill all required details first');
+    return;
+  }
+  
+  if(!email.includes('@')){
+    alert('Please enter a valid email');
+    return;
+  }
+  
+  // Save details
+  localStorage.setItem('userName', name);
+  localStorage.setItem('userEmail', email);
+  localStorage.setItem('userEducation', education);
+  
+  // Open Stripe LAST
+  window.open('https://buy.stripe.com/00wbJ28Q26C0cY2eqp28802', '_blank');
+}
+</script>
+
+</body>
+</html>
